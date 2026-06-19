@@ -1,0 +1,10 @@
+fl_env/
+__pycache__/
+*.pyc
+
+data/
+MNIST/
+
+.anaconda/
+.vscode/
+.idea/

@@ -1,0 +1,445 @@
+python preprocess.py
+
+Carregando arquivos...
+
+  Benign-Monday-no-metadata.parquet: 458,831 linhas
+
+  Botnet-Friday-no-metadata.parquet: 176,038 linhas
+
+  Bruteforce-Tuesday-no-metadata.parquet: 389,714 linhas
+
+  DDoS-Friday-no-metadata.parquet: 221,264 linhas
+
+  DoS-Wednesday-no-metadata.parquet: 584,991 linhas
+
+  Infiltration-Thursday-no-metadata.parquet: 207,630 linhas
+
+  Portscan-Friday-no-metadata.parquet: 119,522 linhas
+
+  WebAttacks-Thursday-no-metadata.parquet: 155,820 linhas
+
+Total: 2,313,810 amostras
+
+Benign (0): 1,977,318 (85.5%)
+
+Attack (1): 336,492 (14.5%)
+
+Normalizando features...
+
+Dividindo em cliente 1 e cliente 2 (Non-IID)...
+
+  Cliente 1: 1,485,069 amostras — Benign=1,384,122 Attack=100,947
+
+  Cliente 2: 694,144 amostras — Benign=593,196 Attack=100,948
+
+Pré-processamento concluído. Arquivos salvos em data/
+
+Features usadas: 51
+
+
+
+python3 server.py 
+
+WARNING :   DEPRECATED FEATURE: flwr.server.start_server() is deprecated.
+
+	Instead, use the `flower-superlink` CLI command to start a SuperLink as shown below:
+
+		$ flower-superlink --insecure
+
+	To view usage and all available options, run:
+
+		$ flower-superlink --help
+
+	Using `start_server()` is deprecated.
+
+            This is a deprecated feature. It will be removed
+
+            entirely in future versions of Flower.
+
+        
+
+INFO :      Starting Flower server, config: num_rounds=5, no round_timeout
+
+INFO :      Flower ECE: gRPC server running (5 rounds), SSL is disabled
+
+INFO :      [INIT]
+
+INFO :      Requesting initial parameters from one random client
+
+INFO :      Received initial parameters from one random client
+
+INFO :      Starting evaluation of initial global parameters
+
+INFO :      Evaluation returned no results (`None`)
+
+INFO :      
+
+INFO :      [ROUND 1]
+
+INFO :      configure_fit: strategy sampled 2 clients (out of 2)
+
+INFO :      aggregate_fit: received 2 results and 0 failures
+
+WARNING :   No fit_metrics_aggregation_fn provided
+
+INFO :      configure_evaluate: strategy sampled 2 clients (out of 2)
+
+INFO :      aggregate_evaluate: received 2 results and 0 failures
+
+INFO :      
+
+INFO :      [ROUND 2]
+
+INFO :      configure_fit: strategy sampled 2 clients (out of 2)
+
+INFO :      aggregate_fit: received 2 results and 0 failures
+
+INFO :      configure_evaluate: strategy sampled 2 clients (out of 2)
+
+INFO :      aggregate_evaluate: received 2 results and 0 failures
+
+INFO :      
+
+INFO :      [ROUND 3]
+
+INFO :      configure_fit: strategy sampled 2 clients (out of 2)
+
+INFO :      aggregate_fit: received 2 results and 0 failures
+
+INFO :      configure_evaluate: strategy sampled 2 clients (out of 2)
+
+INFO :      aggregate_evaluate: received 2 results and 0 failures
+
+INFO :      
+
+INFO :      [ROUND 4]
+
+INFO :      configure_fit: strategy sampled 2 clients (out of 2)
+
+INFO :      aggregate_fit: received 2 results and 0 failures
+
+INFO :      configure_evaluate: strategy sampled 2 clients (out of 2)
+
+INFO :      aggregate_evaluate: received 2 results and 0 failures
+
+INFO :      
+
+INFO :      [ROUND 5]
+
+INFO :      configure_fit: strategy sampled 2 clients (out of 2)
+
+INFO :      aggregate_fit: received 2 results and 0 failures
+
+INFO :      configure_evaluate: strategy sampled 2 clients (out of 2)
+
+INFO :      aggregate_evaluate: received 2 results and 0 failures
+
+INFO :      
+
+INFO :      [SUMMARY]
+
+INFO :      Run finished 5 round(s) in 167.89s
+
+INFO :      	History (loss, distributed):
+
+INFO :      		round 1: 0.026913789397120375
+
+INFO :      		round 2: 0.023380340796720876
+
+INFO :      		round 3: 0.02061447609466437
+
+INFO :      		round 4: 0.018813936318845547
+
+INFO :      		round 5: 0.019037658984548986
+
+INFO :      	History (metrics, distributed, evaluate):
+
+INFO :      	{'accuracy': [(1, 0.991194076766175),
+
+INFO :      	              (2, 0.9923963445552642),
+
+INFO :      	              (3, 0.9925523640393444),
+
+INFO :      	              (4, 0.9927359163735565),
+
+INFO :      	              (5, 0.9926647898440494)],
+
+INFO :      	 'f1': [(1, 0.949642466783658),
+
+INFO :      	        (2, 0.956713198678332),
+
+INFO :      	        (3, 0.9576084335327414),
+
+INFO :      	        (4, 0.9586748405661926),
+
+INFO :      	        (5, 0.9583391349755236)],
+
+INFO :      	 'precision': [(1, 0.9882252193656085),
+
+INFO :      	               (2, 0.9911006148456242),
+
+INFO :      	               (3, 0.9912001206937889),
+
+INFO :      	               (4, 0.9912074387079992),
+
+INFO :      	               (5, 0.9915673236857866)],
+
+INFO :      	 'recall': [(1, 0.9139629402884752),
+
+INFO :      	            (2, 0.9246326825217385),
+
+INFO :      	            (3, 0.926219880361593),
+
+INFO :      	            (4, 0.9282102987515535),
+
+INFO :      	            (5, 0.9272666382402679)]}
+
+INFO : 
+
+
+
+ python3 client.py 1
+
+[Cliente 1] 1,188,055 treino | 297,014 teste
+
+WARNING :   DEPRECATED FEATURE: flwr.client.start_numpy_client() is deprecated. 
+
+	Instead, use `flwr.client.start_client()` by ensuring you first call the `.to_client()` method as shown below: 
+
+	flwr.client.start_client(
+
+		server_address='<IP>:<PORT>',
+
+		client=FlowerClient().to_client(), # <-- where FlowerClient is of type flwr.client.NumPyClient object
+
+	)
+
+	Using `start_numpy_client()` is deprecated.
+
+            This is a deprecated feature. It will be removed
+
+            entirely in future versions of Flower.
+
+        
+
+WARNING :   DEPRECATED FEATURE: flwr.client.start_client() is deprecated.
+
+	Instead, use the `flower-supernode` CLI command to start a SuperNode as shown below:
+
+		$ flower-supernode --insecure --superlink='<IP>:<PORT>'
+
+	To view all available options, run:
+
+		$ flower-supernode --help
+
+	Using `start_client()` is deprecated.
+
+            This is a deprecated feature. It will be removed
+
+            entirely in future versions of Flower.
+
+        
+
+INFO :      
+
+INFO :      Received: get_parameters message 50ee136b-037d-4add-acc4-bdafd348e859
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: train message 63d1463f-d77f-46b0-b5c0-107c98769975
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: evaluate message f819980e-fcd7-47ea-be77-83af7f5869c4
+
+  Loss=0.0221 Acc=0.9932 P=0.9855 R=0.9132 F1=0.9480
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: train message 5de23aef-345e-4661-bb54-a5fcf99901cf
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: evaluate message 4457b5a4-bf9b-4b60-9a84-9e1543efd103
+
+  Loss=0.0188 Acc=0.9941 P=0.9892 R=0.9236 F1=0.9553
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: train message 27493c30-c5d7-4eae-9275-94175f85b606
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: evaluate message b9735e72-85fc-44ff-a17a-72ed5d572292
+
+  Loss=0.0169 Acc=0.9942 P=0.9892 R=0.9253 F1=0.9562
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: train message 6e8d7aea-8139-45c8-aef6-dc3d58ad9771
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: evaluate message bae1cae9-4ec0-4362-874c-d3e4730568b6
+
+  Loss=0.0158 Acc=0.9944 P=0.9894 R=0.9271 F1=0.9572
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: train message 4d367663-2f50-4b38-bad1-bca6359d1682
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: evaluate message c7da74db-d885-4f44-a701-3bc5886393ef
+
+  Loss=0.0158 Acc=0.9943 P=0.9897 R=0.9264 F1=0.9570
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: reconnect message 6b02113f-8636-4d3c-8715-2db374c5ca63
+
+INFO :      Disconnect and shut down
+
+
+
+python3 client.py 2
+
+[Cliente 2] 555,315 treino | 138,829 teste
+
+WARNING :   DEPRECATED FEATURE: flwr.client.start_numpy_client() is deprecated. 
+
+	Instead, use `flwr.client.start_client()` by ensuring you first call the `.to_client()` method as shown below: 
+
+	flwr.client.start_client(
+
+		server_address='<IP>:<PORT>',
+
+		client=FlowerClient().to_client(), # <-- where FlowerClient is of type flwr.client.NumPyClient object
+
+	)
+
+	Using `start_numpy_client()` is deprecated.
+
+            This is a deprecated feature. It will be removed
+
+            entirely in future versions of Flower.
+
+        
+
+WARNING :   DEPRECATED FEATURE: flwr.client.start_client() is deprecated.
+
+	Instead, use the `flower-supernode` CLI command to start a SuperNode as shown below:
+
+		$ flower-supernode --insecure --superlink='<IP>:<PORT>'
+
+	To view all available options, run:
+
+		$ flower-supernode --help
+
+	Using `start_client()` is deprecated.
+
+            This is a deprecated feature. It will be removed
+
+            entirely in future versions of Flower.
+
+        
+
+INFO :      
+
+INFO :      Received: train message 7d6072f1-49f6-4831-a167-2fba903dd7bb
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: evaluate message 2e5cb11f-8a57-49bc-ba7e-f925ed13aa02
+
+  Loss=0.0372 Acc=0.9869 P=0.9941 R=0.9156 F1=0.9532
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: train message f407e9f3-5806-44c4-8f75-d8a872668560
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: evaluate message c02e4ab7-d731-4daf-ba9e-0b520fa0e3d9
+
+  Loss=0.0333 Acc=0.9887 P=0.9952 R=0.9268 F1=0.9598
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: train message c156c953-790f-48b2-988e-f9094417c24b
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: evaluate message bb225a06-d4a9-431b-8626-f1a5cfbc0797
+
+  Loss=0.0285 Acc=0.9890 P=0.9955 R=0.9283 F1=0.9607
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: train message 35f33b50-a111-482e-92aa-31116420ed99
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: evaluate message 268ab64a-f25b-4ee5-8187-fab71ed29098
+
+  Loss=0.0252 Acc=0.9892 P=0.9951 R=0.9306 F1=0.9618
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: train message c8943870-6160-4984-900f-c37344bd6c5f
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: evaluate message 67df0335-7f41-4261-8285-96f00533f41f
+
+  Loss=0.0260 Acc=0.9891 P=0.9955 R=0.9290 F1=0.9611
+
+INFO :      Sent reply
+
+INFO :      
+
+INFO :      Received: reconnect message 6cc451a5-8ce4-4440-8e9f-776511c5ce9a
+
+INFO :      Disconnect and shut down
+
+
